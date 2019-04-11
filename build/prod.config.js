@@ -11,6 +11,7 @@ function resolve(dir) {
 
 module.exports = {
   mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
   // mode: 'product',
   devServer: {
     open: true,
@@ -133,7 +134,7 @@ module.exports = {
     new webpack.BannerPlugin({
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
-      }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
+        }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

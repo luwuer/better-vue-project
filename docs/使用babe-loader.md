@@ -64,6 +64,8 @@ npm install --save-dev babel-loader @babel/core
     ```
 > `@babel/preset-env`配置默认会把所有的ES6+代码（语法、声明、表达式等）的填充放到打包文件中，`useBuiltIns: 'usage'`表示只填充用到的语法，缩小打包物体积
 
+> 如果设置多个预设，预设是从下往上执行的
+
 [更多配置](https://www.babeljs.cn/docs/babel-preset-env#browserslist-integration)
 
 ##### 自定义预设
