@@ -31,7 +31,7 @@ module.exports = {
     alias: {
       '@': resolve('src')
     },
-    modules: ["node_modules"]
+    modules: ['node_modules']
   },
   module: {
     rules: [
@@ -51,9 +51,25 @@ module.exports = {
           path.resolve(__dirname, '../src'),
           path.resolve(__dirname, '../static')
         ],
-        options: {
-          presets: ['@babel/preset-env'],
-          plugins: ['@babel/transform-runtime', '@babel/plugin-syntax-dynamic-import']
+        options: { // options 内容可以拿出来放在 .babelrc
+          presets: [ // 方式一 需在入口文件import '@babel/polyfill'
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  edge: '17',
+                  firefox: '60',
+                  chrome: '67',
+                  safari: '11.1'
+                },
+                useBuiltIns: 'usage' // @babel/polyfill 只填充用到的语法
+              }
+            ]
+          ],
+          plugins: [ // 方式二
+            '@babel/plugin-transform-runtime', // 闭包形式解释es6+语法，不会污染全局环境
+            '@babel/plugin-syntax-dynamic-import'
+          ]
         }
       },
       {
@@ -115,7 +131,9 @@ module.exports = {
       }
     ]),
     new webpack.BannerPlugin({
-      banner: `@auther 莫得盐\n@version ${require('../package.json').version}\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
+      banner: `@auther 莫得盐\n@version ${
+        require('../package.json').version
+      }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
     }),
     new webpack.HotModuleReplacementPlugin()
   ]

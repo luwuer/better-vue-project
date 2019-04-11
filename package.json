@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --config build/prod.config.js"
   },
   "dependencies": {
+    "h_ui": "^1.0.33",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.1.0"
