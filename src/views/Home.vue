@@ -15,7 +15,7 @@ export default {
     HelloWorld
   },
   created() {
-    console.log('home created ...')
+    console.log('home created 1...')
     console.log(config.test)
   }
 }
