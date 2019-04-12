@@ -408,7 +408,7 @@ blockquote {
 <li>Installation<pre class="hljs"><code><div>npm install --save-dev @babel/preset-env
 </div></code></pre>
 </li>
-<li>入口文件顶部引入<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'@babel/preset-env'</span>
+<li>入口文件顶部引入（webpack 4+ 可能会自动导入，不需要这一步）<pre class="hljs"><code><div><span class="hljs-keyword">import</span> <span class="hljs-string">'@babel/preset-env'</span> 
 </div></code></pre>
 </li>
 <li>配置预设<pre class="hljs"><code><div>{
@@ -441,7 +441,9 @@ blockquote {
 <blockquote>
 <p><code>@babel/preset-env</code>配置默认会把所有的ES6+代码（语法、声明、表达式等）的填充放到打包文件中，<code>useBuiltIns: 'usage'</code>表示只填充用到的语法，缩小打包物体积</p>
 </blockquote>
-<p><a href="https://www.babeljs.cn/docs/babel-preset-env#browserslist-integration">更多配置</a></p>
+<blockquote>
+<p>如果设置多个预设，预设是从下往上执行的</p>
+</blockquote>
 <h5 id="%E8%87%AA%E5%AE%9A%E4%B9%89%E9%A2%84%E8%AE%BE">自定义预设</h5>
 <p>我们这里主要会用到<code>@babel/plugin-transform-runtime</code>，它相比于上一种方式有两个优点：</p>
 <ul>
@@ -481,6 +483,11 @@ blockquote {
 <blockquote>
 <p><code>'corejs': 2</code>表示使用<code>@babel/runtime-corejs2</code>来翻译填充代码</p>
 </blockquote>
+<h3 id="%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3">参考文档</h3>
+<ul>
+<li><a href="https://www.babeljs.cn/docs/babel-preset-env">preset-env docs</a></li>
+<li><a href="https://www.babeljs.cn/docs/babel-plugin-transform-runtime">transform-runtime docs</a></li>
+</ul>
 
 </body>
 </html>
