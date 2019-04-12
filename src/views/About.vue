@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { say } from '@/scripts/test'
+import * as test from '@/scripts/test'
 
 export default {
   name: 'about',
@@ -13,7 +13,7 @@ export default {
     return {}
   },
   created() {
-    say('function say is called')
+    test.say('function say is called')
   }
 }
 </script>

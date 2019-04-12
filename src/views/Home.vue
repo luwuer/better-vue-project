@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { say } from '@/scripts/test'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
@@ -15,7 +16,7 @@ export default {
     HelloWorld
   },
   created() {
-    console.log('home created 1...')
+    say('home created 1...')
     console.log(config.test)
   }
 }

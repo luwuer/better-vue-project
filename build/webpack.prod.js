@@ -8,13 +8,14 @@ const { resolve } = require('./utils')
 process.env.NODE_ENV = 'production'
 
 const config = merge(require('./webpack.common.js'), {
+  mode: process.env.NODE_ENV,
+  devtool: 'none',
   // mode: 'development',
   // devtool: 'cheap-module-eval-source-map',
   // optimization: {
   //   usedExports: true
   // },
-  mode: process.env.NODE_ENV,
-  devtool: 'none',
+  optimization: {},
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:5].css',
