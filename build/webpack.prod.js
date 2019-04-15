@@ -3,6 +3,7 @@ const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { resolve } = require('./utils')
 
 process.env.NODE_ENV = 'production'
@@ -15,7 +16,29 @@ const config = merge(require('./webpack.common.js'), {
   // optimization: {
   //   usedExports: true
   // },
-  optimization: {},
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'async',
+  //     minSize: 30000, 
+  //     maxSize: 0, 
+  //     minChunks: 1,
+  //     maxAsyncRequests: 5, 
+  //     maxInitialRequests: 3,
+  //     automaticNameDelimiter: '~',
+  //     name: true,
+  //     cacheGroups: {
+  //       vendors: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         priority: -10
+  //       },
+  //       default: {
+  //         minChunks: 2,
+  //         priority: -20,
+  //         reuseExistingChunk: true
+  //       }
+  //     }
+  //   }
+  // },
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:5].css',
@@ -40,7 +63,8 @@ const config = merge(require('./webpack.common.js'), {
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
       }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ]
 })
 

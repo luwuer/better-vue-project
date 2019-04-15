@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "h_ui": "^1.0.33",
+    "lodash": "^4.17.11",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.1.0"
@@ -31,6 +32,7 @@
     "eslint": "^5.16.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.4.0",
     "mini-css-extract-plugin": "^0.6.0",
     "postcss-loader": "^3.0.0",
     "style-loader": "^0.23.1",
@@ -40,6 +42,7 @@
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^4.2.1"
