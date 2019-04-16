@@ -404,6 +404,9 @@ blockquote {
 <blockquote>
 <p>任何导入的文件都会受到 tree shaking 的影响，如果在项目中使用类似<code>import 'h_ui/main.css'</code>，则也需将其添加到 <code>sideEffects</code> 列表中，以免在打包时被删除（所以上方我们添加了<code>&quot;*.css&quot;</code>）</p>
 </blockquote>
+<blockquote>
+<p>一般三方库为了保持代码通用，都经过 babel 翻译过，翻译后的代码普遍存在副作用，故面对它们时 Tree Shaking 总是不能生效。这是可以通过引用三方库 <code>src</code> 目录下的单个组件或函数，而不是引入整个库（比如<code>import 'lodash/array'</code>， <code>sideEffects</code> 列表中添加 <code>'./node_modules/lodash/*.js'</code>）</p>
+</blockquote>
 <h3 id="%E5%8E%8B%E7%BC%A9%E8%BE%93%E5%87%BA">压缩输出</h3>
 <p>通过如上方式，我们已经可以通过 import 和 export 语法，找出那些需要删除的“未使用代码(dead code)”，然而我们不只是要找出，还需要在 bundle 中删除它们。为此我们将使用 -p(production) 这个 webpack 编译标记，来启用 uglifyjs 压缩插件。</p>
 <pre class="hljs"><code><div>{

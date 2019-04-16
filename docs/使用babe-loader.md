@@ -108,5 +108,5 @@ npm install --save-dev babel-loader @babel/core
 
 ### 参考文档
 
-- [preset-env docs](https://www.babeljs.cn/docs/babel-preset-env)
-- [transform-runtime docs](https://www.babeljs.cn/docs/babel-plugin-transform-runtime)
+- [Preset-env Docs](https://www.babeljs.cn/docs/babel-preset-env)
+- [Transform-runtime Docs](https://www.babeljs.cn/docs/babel-plugin-transform-runtime)

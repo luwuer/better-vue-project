@@ -6,6 +6,7 @@
 
 <script>
 import * as test from '@/scripts/test'
+import _ from 'lodash'
 
 export default {
   name: 'about',

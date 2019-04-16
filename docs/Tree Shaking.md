@@ -19,6 +19,8 @@ webpack 4 会读取 `package.json` 的 `sideEffects` 属性，获取哪些文件
 
 > 任何导入的文件都会受到 tree shaking 的影响，如果在项目中使用类似`import 'h_ui/main.css'`，则也需将其添加到 `sideEffects` 列表中，以免在打包时被删除（所以上方我们添加了`"*.css"`）
 
+> 一般三方库为了保持代码通用，都经过 babel 翻译过，翻译后的代码普遍存在副作用，故面对它们时 Tree Shaking 总是不能生效。这时可以通过引用三方库 `src` 目录下的单个组件或函数，而不是引入整个库（比如`import 'lodash/array'`， `sideEffects` 列表中添加 `'./node_modules/lodash/*.js'`）
+
 ### 压缩输出
 
 通过如上方式，我们已经可以通过 import 和 export 语法，找出那些需要删除的“未使用代码(dead code)”，然而我们不只是要找出，还需要在 bundle 中删除它们。为此我们将使用 -p(production) 这个 webpack 编译标记，来启用 uglifyjs 压缩插件。
@@ -39,4 +41,4 @@ webpack 4 会读取 `package.json` 的 `sideEffects` 属性，获取哪些文件
 ```
 
 ### 参考文档
-- [tree shaking docs](https://www.webpackjs.com/guides/tree-shaking/)
+- [Tree Shaking Docs](https://www.webpackjs.com/guides/tree-shaking/)
