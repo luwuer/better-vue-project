@@ -14,14 +14,14 @@ export default {
     return {}
   },
   created() {
-    test.say('function say is called')
+    test.say('function say is called!')
   }
 }
 </script>
 
 <style lang="stylus">
 .about {
-  background #a11
+  background: #a11;
 }
 </style>
 

@@ -94,7 +94,7 @@ module.exports = {
 - `splitChunks.name: Function`: 以 return 的 string 命名
 - `splitChunks.name: String`: 以该 string 命名
 
-> 默认异步模块导入时通过注释获取文件名，同步模块使用导入文件的文件名
+> 默认异步模块导入时通过魔法注释获取文件名，同步模块使用导入文件的文件名
 
 #### splitChunks.automaticNameDelimiter
 `splitChunks.name: true` 时，`cache group key` 和 `module name` 之间的连字符

@@ -8,7 +8,8 @@ module.exports = {
   },
   output: {
     // publicPath: '/',
-    filename: '[name]_[hash:5].js',
+    filename: '[name].[hash:5].js',
+    chunkFilename: '[name].[hash:5].chunk.js',
     path: resolve('dist')
   },
   resolve: {
@@ -71,7 +72,6 @@ module.exports = {
         use: [
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
-            // : MiniCssExtractPlugin.loader,
             : resolve('node_modules/mini-css-extract-plugin/dist/loader.js'),
           {
             loader: 'css-loader',
