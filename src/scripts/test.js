@@ -1,15 +1,15 @@
 const say = str => {
-  console.log('say...')
+  console.log('say ...')
   console.log(str)
 }
 
 const speak = str => {
-  console.log('speak...')
+  console.log('speak ...')
   console.log(str)
 }
 
 const testObj = obj => {
-  console.log('testObj...')
+  console.log('testObj ...')
   return obj.a
 }
 

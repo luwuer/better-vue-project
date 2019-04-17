@@ -12,7 +12,7 @@
 
 > webpack 4 放弃使用 [CommonsChunkPlugin](https://www.webpackjs.com/plugins/commons-chunk-plugin/) 转而使用 [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)
 
-> 官网讲代码分离有[三种方式](https://webpack.js.org/guides/code-splitting/)，实际第二种和第三种都是由 [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 提供（通过对打包物名称分析）
+> 官网讲代码分离有[三种方式](https://webpack.js.org/guides/code-splitting/)，实际第二种和第三种都是由 [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 提供（注意动态导入不会受到 cacheGroups 外的配置限制，比如 `splitChunks.minSize`）
 
 ### SplitChunksPlugin
 webpack 本身集成了 SplitChunksPlugin ，webpack 4+ 版本只需配置 `mode: production` 就可以开启，低于 4 版本建议升级。

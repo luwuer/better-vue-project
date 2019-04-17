@@ -1,14 +1,13 @@
 const webpack = require('webpack')
-const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const { resolve } = require('./utils')
+const WorkboxPlugin = require('workbox-webpack-plugin')
+const { resolve, generateDllReferences } = require('./utils')
 
-process.env.NODE_ENV = 'production'
 
-const config = merge(require('./webpack.common.js'), {
+module.exports = {
   mode: process.env.NODE_ENV,
   devtool: 'none',
   // mode: 'development',
@@ -17,7 +16,6 @@ const config = merge(require('./webpack.common.js'), {
   //   usedExports: true
   // },
   output: {
-    // chunkHash contentHash 不能在 development 下使用
     filename: '[name].[contentHash:5].js',
     chunkFilename: '[name].[contentHash:5].chunk.js'
   },
@@ -62,8 +60,20 @@ const config = merge(require('./webpack.common.js'), {
       {
         from: 'config.js',
         to: 'config.js'
+      },
+      {
+        from: {
+          glob:'dll/*.js',
+          dot: true
+        }
+        // to: '[name].[ext]'
       }
     ]),
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }),
+    ...generateDllReferences(),
     new webpack.BannerPlugin({
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
@@ -71,6 +81,4 @@ const config = merge(require('./webpack.common.js'), {
     }),
     new BundleAnalyzerPlugin()
   ]
-})
-
-module.exports = config
+}

@@ -13,6 +13,7 @@ module.exports = {
     path: resolve('dist')
   },
   resolve: {
+    extensions: ['.js', '.vue'],
     alias: {
       '@': resolve('src'),
       'static': resolve('static')
