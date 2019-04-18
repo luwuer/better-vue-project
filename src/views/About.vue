@@ -7,7 +7,7 @@
 <script>
 import * as test from '@/scripts/test'
 import { add, pad } from '@/scripts/library-test'
-// import _ from 'lodash'
+import _ from 'lodash'
 
 export default {
   name: 'about',

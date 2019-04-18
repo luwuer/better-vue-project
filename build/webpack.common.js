@@ -1,8 +1,9 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const { resolve } = require('./utils')
+const { resolve, generateDllReferences, generateAddAssests } = require('./utils')
 
 module.exports = {
+  context: resolve(''),
   entry: {
     app: ['./src/main.js']
   },
@@ -20,6 +21,7 @@ module.exports = {
     },
     modules: ['node_modules']
   },
+  performance: false,
   module: {
     rules: [
       {
@@ -35,8 +37,7 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [
-          resolve('src'),
-          resolve('static')
+          resolve('src')
         ],
         options: {
           // presets: [
@@ -53,6 +54,7 @@ module.exports = {
           //     }
           //   ]
           // ],
+          cacheDirectory: true,
           plugins: [
             [
               '@babel/plugin-transform-runtime',
@@ -119,6 +121,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: resolve('index.html')
-    })
+    }),
+    ...generateAddAssests(),
+    ...generateDllReferences()
   ]
 }

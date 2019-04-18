@@ -9,7 +9,8 @@ module.exports = {
     port: 9001,
     hot: true,
     hotOnly: false, // HMR 构建失败时刷新页面
-    historyApiFallback: true // 任意的 404 响应都被替代为 index.html
+    historyApiFallback: true, // 任意的 404 响应都被替代为 index.html
+    clientLogLevel: 'none'
   },
   optimization: {
     usedExports: true,

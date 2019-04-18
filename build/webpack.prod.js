@@ -3,11 +3,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const WorkboxPlugin = require('workbox-webpack-plugin')
-const { resolve, generateDllReferences } = require('./utils')
+const { resolve } = require('./utils')
 
-
-module.exports = {
+const config = {
   mode: process.env.NODE_ENV,
   devtool: 'none',
   // mode: 'development',
@@ -60,20 +58,8 @@ module.exports = {
       {
         from: 'config.js',
         to: 'config.js'
-      },
-      {
-        from: {
-          glob:'dll/*.js',
-          dot: true
-        }
-        // to: '[name].[ext]'
       }
     ]),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true
-    }),
-    ...generateDllReferences(),
     new webpack.BannerPlugin({
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
@@ -82,3 +68,13 @@ module.exports = {
     new BundleAnalyzerPlugin()
   ]
 }
+
+if (false) {
+  const WorkboxPlugin = require('workbox-webpack-plugin')
+  config.plugins.push(new WorkboxPlugin.GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true
+  }),)
+}
+
+module.exports = config
