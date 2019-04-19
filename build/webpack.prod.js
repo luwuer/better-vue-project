@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { resolve } = require('./utils')
 
 const config = {
@@ -64,8 +64,8 @@ const config = {
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
         }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
-    }),
-    new BundleAnalyzerPlugin()
+    })
+    // new BundleAnalyzerPlugin()
   ]
 }
 
