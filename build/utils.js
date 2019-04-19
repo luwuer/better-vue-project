@@ -49,10 +49,23 @@ const generateWebpackConfig = production => {
   }
 }
 
+const webpackStatsPrint = function(stats) {
+  process.stdout.write(
+    stats.toString({
+      colors: true,
+      modules: false,
+      // If you are using ts-loader, setting this to true will make TypeScript errors show up during build.
+      children: false,
+      chunks: false,
+      chunkModules: false
+    }) + '\n'
+  )
+}
 
 module.exports = {
   resolve,
   generateDllReferences,
   generateAddAssests,
-  generateWebpackConfig
+  generateWebpackConfig,
+  webpackStatsPrint
 }

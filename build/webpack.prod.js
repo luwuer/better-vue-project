@@ -2,7 +2,9 @@ const webpack = require('webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserJSPlugin = require('terser-webpack-plugin')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { resolve } = require('./utils')
 
 const config = {
@@ -10,22 +12,26 @@ const config = {
   devtool: 'none',
   // mode: 'development',
   // devtool: 'cheap-module-eval-source-map',
-  // optimization: {
-  //   usedExports: true
-  // },
   output: {
     filename: '[name].[contentHash:5].js',
     chunkFilename: '[name].[contentHash:5].chunk.js'
   },
   optimization: {
+    //   usedExports: true
+    minimizer: [
+      new TerserJSPlugin({
+        parallel: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ],    
     splitChunks: {
-      chunks: 'async',
+      chunks: 'all',
       minSize: 30000,
       maxSize: 0,
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      automaticNameDelimiter: '_',
+      automaticNameDelimiter: '/',
       name: true,
       cacheGroups: {
         vendors: {
@@ -46,7 +52,7 @@ const config = {
       chunkFilename: 'css/[name].[contenthash:5].css'
     }),
     new CleanWebpackPlugin(['dist'], {
-      // 必须设置，否则会找不到dist
+      // 必须设置
       root: resolve('')
     }),
     new CopyWebpackPlugin([
@@ -64,8 +70,8 @@ const config = {
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
         }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
-    }),
-    new BundleAnalyzerPlugin()
+    })
+    // new BundleAnalyzerPlugin()
   ]
 }
 

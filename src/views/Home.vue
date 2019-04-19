@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { say } from '@/scripts/test'
+// import { say } from '@/scripts/test'
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
@@ -16,8 +16,8 @@ export default {
     HelloWorld
   },
   created() {
-    say('home created 1...')
-    console.log(config.test)
+    // say('home created 1...')
+    // console.log(config.test)
   }
 }
 </script>

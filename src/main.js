@@ -6,11 +6,11 @@ import store from "./store";
 // import(/* webpackChunkName: "jquery" */'jquery')
 // import _ from 'lodash/join'
 
-import Hui from 'h_ui/dist/h_ui.min.js'
+// import Hui from 'h_ui/dist/h_ui.min.js'
 
 Vue.config.productionTip = false;
 
-Vue.use(Hui)
+// Vue.use(Hui)
 
 new Vue({
   router,

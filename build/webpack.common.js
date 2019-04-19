@@ -75,7 +75,12 @@ module.exports = {
         use: [
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
-            : resolve('node_modules/mini-css-extract-plugin/dist/loader.js'),
+            : {
+              loader: resolve('node_modules/mini-css-extract-plugin/dist/loader.js'),
+              options: {
+                publicPath: '../'
+              }
+          },
           {
             loader: 'css-loader',
             options: {
