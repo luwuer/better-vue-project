@@ -38,7 +38,7 @@ module.exports = {
     'no-func-assign': 2, // 禁止重复的函数声明
     'no-invalid-this': 0, // 禁止无效的this，只能用在构造器，类，对象字面量
     'no-redeclare': 2, // 禁止重复声明变量
-    'space-before-function-paren': [0, 'always'], // 函数定义时括号前面要不要有空格
+    'space-before-function-paren': [2, 'never'], // 函数定义时括号前面要不要有空格
     'no-this-before-super': 0, // 在调用super()之前不能使用this或super
     'no-undef': 2, // 不能有未定义的变量
     'no-use-before-define': 2, // 未定义前不能使用
