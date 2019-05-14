@@ -18,7 +18,7 @@ const _resolve = (...args) => {
 
 const resolve = _memorize(_resolve)
 
-const generateDllReferences = function() {
+const generateDllReferences = function () {
   const manifests = glob.sync(`${resolve('dll')}/*.json`)
 
   return manifests.map(file => {
@@ -29,7 +29,7 @@ const generateDllReferences = function() {
   })
 }
 
-const generateAddAssests = function() {
+const generateAddAssests = function () {
   const dlls = glob.sync(`${resolve('dll')}/*.js`)
 
   return dlls.map(file => {
@@ -49,8 +49,8 @@ const generateWebpackConfig = production => {
   }
 }
 
-const webpackStatsPrint = function(stats) {
-  process.stdout.write(
+const webpackStatsPrint = function (stats) {
+  console.log(
     stats.toString({
       colors: true,
       modules: false,
@@ -58,7 +58,7 @@ const webpackStatsPrint = function(stats) {
       children: false,
       chunks: false,
       chunkModules: false
-    }) + '\n'
+    }).replace(/\n.*?static.*?(?=\n)/g, '') + '\n'
   )
 }
 
