@@ -34,7 +34,9 @@ const generateAddAssests = function() {
 
   return dlls.map(file => {
     return new AddAssestHtmlWebpackPlugin({
-      filepath: file
+      filepath: file,
+      outputPath: '/dll',
+      publicPath: '/dll'
     })
   })
 }

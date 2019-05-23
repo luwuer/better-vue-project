@@ -7,10 +7,14 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     parser: 'babel-eslint'
+    // parser: 'esprima',
+    // ecmaFeatures: {
+    //   destructuring: true
+    // }
   },
   rules: {
     indent: ['error', 2],
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     semi: ['error', 'never'], // 不使用分号
     'no-console': 0,
     'generator-star-spacing': 'off', // allow async-await

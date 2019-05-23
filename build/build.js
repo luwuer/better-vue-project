@@ -8,10 +8,9 @@ const config = generateWebpackConfig(production)
 
 if (production) {
   let spinner = new Spinner('building: ')
-  spinner.start() 
+  spinner.start()
 
   webpack(config, (err, stats) => {
-
     if (err || stats.hasErrors()) {
       webpackStatsPrint(stats)
 
@@ -28,7 +27,7 @@ if (production) {
     console.log(
       chalk.yellow(
         '  Built files are meant to be served over an HTTP server.\n' +
-          "  Opening index.html over file:// won't work.\n"
+          '  Opening index.html over file:// won\'t work.\n'
       )
     )
   })

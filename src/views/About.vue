@@ -5,9 +5,8 @@
 </template>
 
 <script>
-// import * as test from '@/scripts/test'
-// import { add, pad } from '@/scripts/library-test'
-// import _ from 'lodash'
+import * as test from '@/scripts/test'
+import _ from 'lodash'
 
 export default {
   name: 'about',
@@ -18,19 +17,18 @@ export default {
     }
   },
   created() {
-    // test.say('function say is called!!!')
+    // 测试 loadsh 是否被打包
+    let arr = _.chunk(['a', 'b', 'c', 'd', 'e'], 2)
+    console.log(arr)
 
-    // this.addTest = add(11, 41)
-    // console.log(this.addTest)
-    // this.padEndTest = pad(this.padEndTest, 3, 'S')
-    // console.log(this.padEndTest)
+    // 测试是否抖掉了不需要的模块
+    test.say('function say is called!!!')
   }
 }
 </script>
 
 <style lang="stylus">
 .about {
-  background: #a117;
+  background #a117
 }
 </style>
-

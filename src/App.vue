@@ -4,7 +4,6 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <input type="text">
     <router-view />
   </div>
 </template>

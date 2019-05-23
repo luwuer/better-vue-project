@@ -80,7 +80,7 @@ module.exports = {
               options: {
                 publicPath: '../'
               }
-          },
+            },
           {
             loader: 'css-loader',
             options: {

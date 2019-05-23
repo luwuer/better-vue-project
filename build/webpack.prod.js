@@ -4,14 +4,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const config = require('./config')
 const { resolve } = require('./utils')
 
-const config = {
+const webpackConfig = {
   mode: process.env.NODE_ENV,
-  devtool: 'none',
   // mode: 'development',
-  // devtool: 'cheap-module-eval-source-map',
+  devtool: config.production.sourceMap
+    ? 'cheap-module-eval-source-map'
+    : 'none',
   output: {
     filename: '[name].[contentHash:5].js',
     chunkFilename: '[name].[contentHash:5].chunk.js'
@@ -23,7 +24,7 @@ const config = {
         parallel: true
       }),
       new OptimizeCSSAssetsPlugin({})
-    ],    
+    ],
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
@@ -32,7 +33,9 @@ const config = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '/',
-      name: true,
+      name(mod, chunks) {
+        return `${chunks[0].name}.vendor`
+      },
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -69,18 +72,25 @@ const config = {
     new webpack.BannerPlugin({
       banner: `@auther 莫得盐\n@version ${
         require('../package.json').version
-        }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
+      }\n@info hash:[hash], chunkhash:[chunkhash], name:[name], filebase:[filebase], query:[query], file:[file]`
     })
-    // new BundleAnalyzerPlugin()
   ]
 }
 
-if (false) {
+if (config.production.pwa) {
   const WorkboxPlugin = require('workbox-webpack-plugin')
-  config.plugins.push(new WorkboxPlugin.GenerateSW({
-    clientsClaim: true,
-    skipWaiting: true
-  }),)
+  webpackConfig.plugins.push(
+    new WorkboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    })
+  )
 }
 
-module.exports = config
+if (config.production.bundleAnalyzer) {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+    .BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
+
+module.exports = webpackConfig

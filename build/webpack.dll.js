@@ -2,9 +2,8 @@ const webpack = require('webpack')
 const { resolve } = require('./utils')
 
 const libs = {
-  _frame: ['vue', 'vue-router'],
-  _ui: ['h_ui/dist/h_ui.min.js'],
-  _utils: ['jquery', 'lodash']
+  _frame: ['vue', 'vue-router', 'vuex'],
+  _utils: ['lodash']
 }
 
 module.exports = {

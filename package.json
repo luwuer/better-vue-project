@@ -15,7 +15,6 @@
     "build-lib": "webpack --config build/webpack.library.js"
   },
   "dependencies": {
-    "h_ui": "^1.0.33",
     "lodash": "^4.17.11",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
@@ -28,7 +27,7 @@
     "@babel/runtime-corejs2": "^7.4.3",
     "add-asset-html-webpack-plugin": "^3.1.3",
     "autoprefixer": "^9.3.1",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "7.2.3",
     "babel-loader": "^8.0.5",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^1.0.0",
