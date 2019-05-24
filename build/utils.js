@@ -19,7 +19,8 @@ const _resolve = (...args) => {
 
 const resolve = _memorize(_resolve)
 
-const generateDllReferences = function() {
+// 读取预打包依赖的引用关系
+const generateDllReferences = () => {
   const manifests = glob.sync(`${resolve('dll')}/*.json`)
 
   return manifests.map(file => {
@@ -30,10 +31,12 @@ const generateDllReferences = function() {
   })
 }
 
-const generateAddAssests = function() {
+// 引入把预先打包的 dll
+const generateAddAssests = () => {
   const dlls = glob.sync(`${resolve('dll')}/*.js`)
 
   return dlls.map(file => {
+    console.log(file)
     return new AddAssestHtmlWebpackPlugin({
       filepath: file,
       outputPath: '/dll',
@@ -52,7 +55,7 @@ const generateWebpackConfig = production => {
   }
 }
 
-const webpackStatsPrint = function(stats) {
+const webpackStatsPrint = stats => {
   console.log(
     stats
       .toString({
@@ -67,28 +70,34 @@ const webpackStatsPrint = function(stats) {
   )
 }
 
-const PAGE_PATH = resolve('/src/pages')
-const entries = function() {
-  var entryFiles = glob.sync(PAGE_PATH + '/*/*.js')
+const PAGES_PATH = resolve('src/pages')
+
+const _generatePageFileName = filePath => {
+  let matched = filePath.match(/\w+/g)
+  return matched[matched.length - 3]
+}
+
+const entries = () => {
+  var entryFiles = glob.sync(PAGES_PATH + '/*/*.js')
   var map = {}
   entryFiles.forEach((filePath) => {
-    var filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    var filename = _generatePageFileName(filePath)
     map[filename] = [filePath]
   })
 
   return map
 }
 
-const htmlPlugins = function() {
-  let entryHtml = glob.sync(PAGE_PATH + '/*/*.html')
+const htmlPlugins = () => {
+  let entryHtml = glob.sync(PAGES_PATH + '/*/*.html')
   let arr = []
   entryHtml.forEach((filePath) => {
-    let filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    let filename = _generatePageFileName(filePath)
     let conf = {
       chunksSortMode: 'none',
       template: filePath,
       filename: `${filename}.html`,
-      chunks: ['runtime', 'manifest', filename]
+      chunks: ['runtime', 'vendors', filename]
     }
 
     if (process.env.NODE_ENV === 'production') {

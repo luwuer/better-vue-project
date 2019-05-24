@@ -3,14 +3,14 @@
     <h1>Page A</h1>
     <div id="nav">
       <router-link to="/">A-Home</router-link> |
-      <router-link to="/about">A-About</router-link>
+      <router-link to="/about">A-About</router-link> |
+      <a href="/pb.html">To Page B</a>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'app',
   created() {
@@ -33,22 +33,22 @@ export default {
 
 <style lang="stylus">
 #app {
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
-  padding 30px
+  padding: 30px;
 
   a {
-    font-weight bold
-    color #2c3e50
+    font-weight: bold;
+    color: #2c3e50;
 
     &.router-link-exact-active {
-      color #42b983
+      color: #42b983;
     }
   }
 }

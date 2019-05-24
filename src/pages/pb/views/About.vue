@@ -1,11 +1,11 @@
 <template>
   <div class="about">
-    <h1>Page A About View</h1>
+    <h1>Page B About View</h1>
   </div>
 </template>
 
 <style lang="stylus">
 .about {
-  background: #FF6666;
+  background: #0099FF;
 }
 </style>

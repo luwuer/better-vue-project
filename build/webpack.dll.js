@@ -2,8 +2,7 @@ const webpack = require('webpack')
 const { resolve } = require('./utils')
 
 const libs = {
-  _frame: ['vue', 'vue-router', 'vuex'],
-  _utils: ['lodash']
+  _frame: ['vue', 'vue-router', 'vuex']
 }
 
 module.exports = {

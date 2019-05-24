@@ -1,16 +1,15 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const {
   resolve,
   generateDllReferences,
-  generateAddAssests
+  generateAddAssests,
+  entries,
+  htmlPlugins
 } = require('./utils')
 
 module.exports = {
   context: resolve(''),
-  entry: {
-    app: ['./src/main.js']
-  },
+  entry: entries(),
   output: {
     // publicPath: '/',
     filename: '[name].[hash:5].js',
@@ -21,6 +20,8 @@ module.exports = {
     extensions: ['.js', '.vue'],
     alias: {
       '@': resolve('src'),
+      '@pa': resolve('src/pages/pa'),
+      '@pb': resolve('src/pages/pb'),
       static: resolve('static')
     },
     modules: ['node_modules']
@@ -130,11 +131,8 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: resolve('index.html')
-    }),
     ...generateAddAssests(),
-    ...generateDllReferences()
+    ...generateDllReferences(),
+    ...htmlPlugins()
   ]
 }

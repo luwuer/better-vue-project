@@ -14,11 +14,14 @@ const webpackConfig = {
     ? 'cheap-module-eval-source-map'
     : 'none',
   output: {
-    filename: '[name].[contentHash:5].js',
-    chunkFilename: '[name].[contentHash:5].chunk.js'
+    filename: 'scripts/[name].[contentHash:5].js',
+    chunkFilename: 'scripts/[name].[contentHash:5].chunk.js'
   },
   optimization: {
     //   usedExports: true
+    runtimeChunk: {
+      name: 'runtime'
+    },
     minimizer: [
       new TerserJSPlugin({
         parallel: true
@@ -33,9 +36,10 @@ const webpackConfig = {
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '/',
-      name(mod, chunks) {
-        return `${chunks[0].name}.vendor`
-      },
+      // name(mod, chunks) {
+      //   return `${chunks[0].name}.vendor`
+      // },
+      name: 'vendors',
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,

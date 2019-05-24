@@ -1,15 +1,16 @@
 <template>
   <div id="app">
+    <h1>Page B</h1>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">B-Home</router-link> |
+      <router-link to="/about">B-About</router-link> |
+      <a href="/">To Page A</a>
     </div>
     <router-view />
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'app',
   created() {
@@ -32,22 +33,22 @@ export default {
 
 <style lang="stylus">
 #app {
-  font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
-  padding 30px
+  padding: 30px;
 
   a {
-    font-weight bold
-    color #2c3e50
+    font-weight: bold;
+    color: #2c3e50;
 
     &.router-link-exact-active {
-      color #42b983
+      color: #42b983;
     }
   }
 }
