@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const AddAssestHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 const glob = require('glob')
 
@@ -66,10 +67,52 @@ const webpackStatsPrint = function(stats) {
   )
 }
 
+const PAGE_PATH = resolve('/src/pages')
+const entries = function() {
+  var entryFiles = glob.sync(PAGE_PATH + '/*/*.js')
+  var map = {}
+  entryFiles.forEach((filePath) => {
+    var filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    map[filename] = [filePath]
+  })
+
+  return map
+}
+
+const htmlPlugins = function() {
+  let entryHtml = glob.sync(PAGE_PATH + '/*/*.html')
+  let arr = []
+  entryHtml.forEach((filePath) => {
+    let filename = filePath.substring(filePath.lastIndexOf('\/') + 1, filePath.lastIndexOf('.'))
+    let conf = {
+      chunksSortMode: 'none',
+      template: filePath,
+      filename: `${filename}.html`,
+      chunks: ['runtime', 'manifest', filename]
+    }
+
+    if (process.env.NODE_ENV === 'production') {
+      conf = merge(conf, {
+        // chunksSortMode: 'dependency',
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: true
+        }
+      })
+    }
+
+    arr.push(new HtmlWebpackPlugin(conf))
+  })
+  return arr
+}
+
 module.exports = {
   resolve,
   generateDllReferences,
   generateAddAssests,
   generateWebpackConfig,
-  webpackStatsPrint
+  webpackStatsPrint,
+  entries,
+  htmlPlugins
 }

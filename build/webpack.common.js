@@ -1,6 +1,10 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const { resolve, generateDllReferences, generateAddAssests } = require('./utils')
+const {
+  resolve,
+  generateDllReferences,
+  generateAddAssests
+} = require('./utils')
 
 module.exports = {
   context: resolve(''),
@@ -17,7 +21,7 @@ module.exports = {
     extensions: ['.js', '.vue'],
     alias: {
       '@': resolve('src'),
-      'static': resolve('static')
+      static: resolve('static')
     },
     modules: ['node_modules']
   },
@@ -36,23 +40,24 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [
-          resolve('src')
-        ],
+        include: [resolve('src')],
         options: {
           // presets: [
           //   [
           //     '@babel/preset-env',
           //     {
+          //       modules: false,
+          //       useBuiltIns: 'usage',
           //       targets: {
-          //         edge: '17',
-          //         firefox: '60',
-          //         chrome: '67',
-          //         safari: '11.1'
+          //         chrome: '58'
           //       },
-          //       useBuiltIns: 'usage'
+          //       corejs: 2
           //     }
           //   ]
+          // ],
+          // plugins: [
+          //   '@babel/plugin-syntax-dynamic-import',
+          //   '@babel/plugin-transform-runtime'
           // ],
           cacheDirectory: true,
           plugins: [
@@ -76,7 +81,9 @@ module.exports = {
           process.env.NODE_ENV !== 'production'
             ? 'vue-style-loader'
             : {
-              loader: resolve('node_modules/mini-css-extract-plugin/dist/loader.js'),
+              loader: resolve(
+                'node_modules/mini-css-extract-plugin/dist/loader.js'
+              ),
               options: {
                 publicPath: '../'
               }
