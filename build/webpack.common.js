@@ -131,8 +131,8 @@ module.exports = {
   },
   plugins: [
     new VueLoaderPlugin(),
-    ...generateAddAssests(),
+    ...htmlPlugins(),
     ...generateDllReferences(),
-    ...htmlPlugins()
+    ...generateAddAssests()
   ]
 }
