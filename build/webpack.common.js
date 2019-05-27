@@ -38,37 +38,7 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           resolve('src')
-        ],
-        options: {
-          // presets: [
-          //   [
-          //     '@babel/preset-env',
-          //     {
-          //       targets: {
-          //         edge: '17',
-          //         firefox: '60',
-          //         chrome: '67',
-          //         safari: '11.1'
-          //       },
-          //       useBuiltIns: 'usage'
-          //     }
-          //   ]
-          // ],
-          cacheDirectory: true,
-          plugins: [
-            [
-              '@babel/plugin-transform-runtime',
-              {
-                absoluteRuntime: false,
-                corejs: 2,
-                helpers: true,
-                regenerator: true,
-                useESModules: false
-              }
-            ],
-            '@babel/plugin-syntax-dynamic-import'
-          ]
-        }
+        ]
       },
       {
         test: /\.styl(us)?$/,

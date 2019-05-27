@@ -13,6 +13,13 @@ export default {
   name: 'home',
   components: {
     HelloWorld
+  },
+  created() {
+    // babel 测试对象的实例方法
+    console.log(['a', 'b'].includes('a'))
+    // babel 测试新对象
+    const promise = new Promise(() => {})
+    console.log(promise)
   }
 }
 </script>

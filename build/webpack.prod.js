@@ -8,8 +8,8 @@ const config = require('./config')
 const { resolve } = require('./utils')
 
 const webpackConfig = {
-  mode: process.env.NODE_ENV,
-  // mode: 'development',
+  // mode: process.env.NODE_ENV,
+  mode: 'development',
   devtool: config.production.sourceMap
     ? 'cheap-module-eval-source-map'
     : 'none',
