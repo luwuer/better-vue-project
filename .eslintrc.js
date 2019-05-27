@@ -14,7 +14,8 @@ module.exports = {
   },
   rules: {
     indent: ['error', 2],
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': 0,
+    // 'linebreak-style': ['error', 'windows'],
     semi: ['error', 'never'], // 不使用分号
     'no-console': 0,
     'generator-star-spacing': 'off', // allow async-await
