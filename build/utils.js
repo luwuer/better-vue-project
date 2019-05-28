@@ -36,7 +36,6 @@ const generateAddAssests = () => {
   const dlls = glob.sync(`${resolve('dll')}/*.js`)
 
   return dlls.map(file => {
-    console.log(file)
     return new AddAssestHtmlWebpackPlugin({
       filepath: file,
       outputPath: '/dll',

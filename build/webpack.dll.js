@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const { resolve } = require('./utils')
 
 const libs = {
@@ -15,6 +16,9 @@ module.exports = {
     library: '[name]' // 与 DllPlugin.name 保持一致
   },
   plugins: [
+    new CleanWebpackPlugin(['dll'], {
+      root: resolve('')
+    }),
     new webpack.DllPlugin({
       name: '[name]',
       path: resolve('dll', '[name].manifest.json'),
