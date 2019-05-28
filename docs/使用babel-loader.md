@@ -23,7 +23,7 @@ npm install --save-dev babel-loader @babel/core
 ## 预设
 上文说到我们需要使用一些插件，但搜索和选择插件是一个很浪费时间的事，为了在短时间内解决问题，我们就需要使用**预设**。
 
-预设就是指插件（及其配置）组成的数组，它可以包含插件和其他预设。
+预设就是指插件（及其配置）组成的数组，它可以包含插件和其他预设，例如：
 
 `yourPreset.js`
 ```javascript
@@ -80,23 +80,23 @@ babel 提供几个官方预设供用户使用，这里举例讲解最常用的 [
       // +++
     }
     ```
-    *`useBuiltIns` 值不为 `false` 时需要指明 `corejs` 版本，否则会有警告（虽然不设置也默认为 2）*
+    *`useBuiltIns` 值不为 `false` 时需要指明 `corejs` 版本，否则会有警告（虽然有默认值 2）*
 
-    *`corejs: 2` 表示使用 `core-js` 2 来翻译 / 填充代码*
+    *`corejs: 2` 表示使用 `@babel/preset-env/lib/polyfills/corejs2` 来翻译 / 填充代码*
 
 
 `useBuiltIns` 选项说明：
-- `false` 默认值，babel 不自动导入 polyfill ，你需要手动在项目全局环境中导入（不推荐）
+- `false` 默认值，babel 不自动导入 polyfill ，你需要手动在项目全局环境中导入
   - 优点：可以自己控制，使用了什么导入什么
   - 缺点：每个语法都去找其对应的 polyfill 很麻烦，直接 `import babel-polyfill` 时同 `useBuiltIns: entry`
-- `entry` babel 自动在入口文件执行 `import 'babel-polyfill'`，不需要手动导入（不推荐）
+- `entry` babel 自动在入口文件执行 `import 'babel-polyfill'`，不需要手动导入
   - 优点：方便
   - 缺点：生成代码体积大，生成代码中存在所有的 polyfill ，即使你不需要它们
-- `usage` 当每个文件里用到需要 polyfill 的特性时，在文件中添加对应的 polyfill ，可以保证每个 polyfill 只 load 一次，能有效缩小生产包体积（推荐）
+- `usage` 当每个文件里用到需要 polyfill 的特性时，在文件中添加对应的 polyfill ，可以保证每个 polyfill 只 load 一次，缩小生产包体积
   - 优点：只导入需要的 polyfill 并且是自动导入
-  - 缺点：还在实验中，或许会存在未知问题
+  - 缺点：实验中的属性
 
-可以看到在使用 `@babel/preset-env` 时，如果我们不在意生成代码的提交，那么只需要设置 `useBuiltIns: entry` 就能正常使用 ES6+ 的新特性了，但遗憾的是它并不能覆盖所有开发场景，因为它存在两个缺点：
+`@babel/preset-env` 使用起来非常方便，但遗憾的是它并不能覆盖所有开发场景，因为它存在两个缺点：
 - **重复填充**: `@babel/preset-env` 会填充每一个文件，所以 a.js / b.js 如果同时用到了 Promise，那么翻译后两个文件均存在 Promise 的填充
 - **全局污染**: `@babel/preset-env` 会将 `Promise` 翻译成全局变量 `var _Promise`
 
