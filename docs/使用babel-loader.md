@@ -1,9 +1,11 @@
 # bable-loader 使用
 
+*本指南基于 babel 7*
+
 ## 安装
 
 ```bash
-npm install --save-dev babel-loader @babel/core
+yarn add babel-loader @babel/core -D
 ```
 
 ## 使用
@@ -18,7 +20,7 @@ npm install --save-dev babel-loader @babel/core
 }
 ```
 
-上方的配置指明了使用 babel 翻译 js 文件，但仅是这样 babel 并不知道该如何翻译、翻译什么，要让它正真工作起来，还需要其他插件支持。
+该配置指明了使用 babel 翻译 js 文件，但仅是这样 babel 并不知道该如何翻译、翻译什么，要让它正真工作起来，还需要其他插件支持。
 
 ## 预设
 上文说到我们需要使用一些插件，但搜索和选择插件是一个很浪费时间的事，为了在短时间内解决问题，我们就需要使用**预设**。
@@ -49,7 +51,7 @@ babel 提供几个官方预设供用户使用，这里举例讲解最常用的 [
 
 1. 安装
     ```bash
-    npm install --save-dev @babel/preset-env
+    yarn add @babel/preset-env -D
     ```
 
 2. 配置
@@ -110,7 +112,7 @@ babel 提供几个官方预设供用户使用，这里举例讲解最常用的 [
 
 1. 安装
     ```bash
-    yarn add @babel/plugin-transform-runtime -D // 开发以来
+    yarn add @babel/plugin-transform-runtime -D // 开发依赖
     yarn add @babel/runtime-corejs2 // 生产依赖
     ```
 2. 配置
@@ -146,10 +148,10 @@ babel 提供几个官方预设供用户使用，这里举例讲解最常用的 [
 ## 如何选择
 如果项目是公共库，使用 `@babel/plugin-transform-runtime` ，否则使用 `@babel/preset-env`
 
-## 常用配置记录
+## 常用配置
 
 ```bash
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/plugin-syntax-dynamic-import
+yarn add babel-loader @babel/core @babel/preset-env @babel/plugin-syntax-dynamic-import -D
 ```
 
 #### 在 .babelrc 中配置
@@ -194,7 +196,8 @@ _.babelrc 放在项目根目录_
 #### 在 JS 中配置
 
 ```bash
-npm install --save-dev babel-loader @babel/core @babel/plugin-transform-runtime @babel/plugin-syntax-dynamic-import
+yarn add babel-loader @babel/core @babel/plugin-transform-runtime @babel/plugin-syntax-dynamic-import -D
+yarn add @babel/runtime-corejs2
 ```
 
 ```javascript
