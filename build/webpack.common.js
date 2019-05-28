@@ -43,37 +43,7 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src')],
         options: {
-          // presets: [
-          //   [
-          //     '@babel/preset-env',
-          //     {
-          //       modules: false,
-          //       useBuiltIns: 'usage',
-          //       targets: {
-          //         chrome: '58'
-          //       },
-          //       corejs: 2
-          //     }
-          //   ]
-          // ],
-          // plugins: [
-          //   '@babel/plugin-syntax-dynamic-import',
-          //   '@babel/plugin-transform-runtime'
-          // ],
-          cacheDirectory: true,
-          plugins: [
-            [
-              '@babel/plugin-transform-runtime',
-              {
-                absoluteRuntime: false,
-                corejs: 2,
-                helpers: true,
-                regenerator: true,
-                useESModules: false
-              }
-            ],
-            '@babel/plugin-syntax-dynamic-import'
-          ]
+          cacheDirectory: true
         }
       },
       {
