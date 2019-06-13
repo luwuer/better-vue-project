@@ -3,8 +3,14 @@
     <h1>Page B</h1>
     <div id="nav">
       <router-link to="/">B-Home</router-link> |
-      <router-link to="/about">B-About</router-link> |
-      <a href="/">To Page A</a>
+      <router-link to="/about">B-About</router-link>
+      <br>
+      <br>
+      <a href="/pa.html">To Page A</a> |
+      <a href="/pc.html">To Page C</a> |
+      <a href="/pd.html">To Page D</a> |
+      <a href="/pe.html">To Page E</a> |
+      <a href="/pf.html">To Page F</a>
     </div>
     <router-view />
   </div>
