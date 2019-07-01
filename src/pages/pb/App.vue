@@ -6,7 +6,7 @@
       <router-link to="/about">B-About</router-link>
       <br>
       <br>
-      <a href="/pa.html">To Page A</a> |
+      <a href="/">To Page A</a> |
       <a href="/pc.html">To Page C</a> |
       <a href="/pd.html">To Page D</a> |
       <a href="/pe.html">To Page E</a> |
