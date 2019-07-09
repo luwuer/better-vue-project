@@ -29,7 +29,9 @@ module.exports = {
         use: {
           loader: 'vue-loader',
           options: {
-            prettify: false
+            prettify: false,
+            cacheDirectory: resolve('node_modules/.cache/vue-loader'),
+            cacheIdentifier: 'vue'
           }
         }
       },
@@ -38,7 +40,11 @@ module.exports = {
         loader: 'babel-loader',
         include: [
           resolve('src')
-        ]
+        ],
+        options: {
+          // 默认目录 node_modules/.cache/babel-loader
+          cacheDirectory: true
+        }
       },
       {
         test: /\.styl(us)?$/,

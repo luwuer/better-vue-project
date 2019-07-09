@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -54,10 +54,7 @@ const webpackConfig = {
       filename: 'css/[name].[contenthash:5].css',
       chunkFilename: 'css/[name].[contenthash:5].css'
     }),
-    new CleanWebpackPlugin(['dist'], {
-      // 必须设置
-      root: resolve('')
-    }),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       // 默认输出 output.path
       {
