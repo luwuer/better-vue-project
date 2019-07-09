@@ -19,7 +19,7 @@ module.exports = {
       '@': resolve('src'),
       'static': resolve('static')
     },
-    modules: ['node_modules']
+    modules: [resolve('node_modules')]
   },
   performance: false,
   module: {
