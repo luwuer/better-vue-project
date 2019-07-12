@@ -15,7 +15,7 @@
     "build-lib": "webpack --config build/webpack.library.js"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "popper.js": "^1.15.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
