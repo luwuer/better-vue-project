@@ -36,7 +36,7 @@ const generateAddAssests = function() {
     return new AddAssestHtmlWebpackPlugin({
       filepath: file,
       outputPath: '/dll',
-      publicPath: '/dll'
+      publicPath: 'dll'
     })
   })
 }
